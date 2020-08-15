@@ -1,6 +1,6 @@
 const mysql = require('mysql').verbose();
 
-const db = new mysql.Database('./db/tracker.db', err => {
+const db = new mysql.Database('./db/track.db', err => {
     if (err) {
         return console.error(err.message);
     }
