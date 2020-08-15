@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../../db/database');
+const inquirer = require('inquirer');
+
 
 function employeeAdd() {
     router.post('/employee', ({body}) => {
