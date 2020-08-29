@@ -1,11 +1,19 @@
-const mysql = require('mysql').verbose();
+const mysql = require("mysql2");
+require('dotenv').config();
+const Sequelize = require('sequelize');
 
-const db = new mysql.Database('./db/track.db', err => {
-    if (err) {
-        return console.error(err.message);
-    }
+let sequelize;
 
-    console.log('Connected to the Employee Tracker database.');
+const db = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  // Your password
+  password: DB_PW,
+  database: "track"
+});
+
+db.connect(function (err) {
+  if (err) throw err;
 });
 
 module.exports = db;

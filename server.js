@@ -11,7 +11,42 @@ const app = express();
 const question = [
     {
         type: 'list',
-        choices: ['View all Departments', 'View all Roles', 'View all Employees', 'Add a Department', 'Add a Role','Add an Employee', 'Update Employee Role']
+        name: "choice",
+        messag: "What would you like to do?",
+        choices: [
+          {
+            name: "View All Employees",
+            value: "VIEW_EMPLOYEES"
+          },
+          {
+            name: "Add Employee",
+            value: "ADD_EMPLOYEE"
+          },
+          {
+            name: "Update Employee Role",
+            value: "UPDATE_EMPLOYEE_ROLE"
+          },
+          {
+            name: "View All Roles",
+            value: "VIEW_ROLES"
+          },
+          {
+            name: "Add Role",
+            value: "ADD_ROLE"
+          },
+          {
+            name: "View All Departments",
+            value: "VIEW_DEPARTMENTS"
+          },
+          {
+            name: "Add Department",
+            value: "ADD_DEPARTMENT"
+          },
+          {
+            name: "Quit",
+            value: "QUIT"
+          }
+        ]
     }
 ]
 
@@ -29,9 +64,27 @@ app.use((req, res) => {
 
 const promptUser = data => {
     inquirer
-    .prompt(questions)
-
-
+    .prompt(question)
+    .then(res => {
+      let choice = res.choice;
+      switch (choice) {
+        case "VIEW_EMPLOYEES": viewEmployees()
+        .then(() => prompUser());
+        case "ADD_EMPLOYEE": employeeAdd()
+        .then(() => prompUser());
+        case "UPDATE_EMPLOYEE_ROLE": employeeRoleUpdate()
+        .then(() => prompUser());
+        case "VIEW_ROLES": viewRoles()
+        .then(() => prompUser());
+        case "ADD_ROLE": roleAdd()
+        .then(() => prompUser());
+        case "VIEW_DEPARTMENTS": viewDepartments()
+        .then(() => prompUser());
+        case "ADD_DEPARTMENT": departmentAdd()
+        .then(() => prompUser());
+        case "QUIT": end();
+      }
+    })
 }
 
 function run() {
@@ -46,3 +99,10 @@ db.on('open', () => {
     run();
   });
 });
+
+function end() {
+  console.log("Thank you for tracking your employees!");
+  process.exit();
+}
+
+run();
