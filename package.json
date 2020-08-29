@@ -1,0 +1,22 @@
+{
+  "name": "employeetracker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "asciiart-logo": "^0.2.6",
+    "console.table": "^0.10.0",
+    "express": "^4.17.1",
+    "inquirer": "^7.0.0",
+    "mysql": "^2.18.1",
+    "mysql2": "^2.1.0",
+    "seed": "^0.4.4",
+    "sequel": "^0.3.10",
+    "sequelize": "^6.3.4"
+  }
+}
